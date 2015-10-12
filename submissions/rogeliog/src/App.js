@@ -1,24 +1,32 @@
 import React, { Component } from 'react';
 import { PlanetMonitor } from './PlanetMonitor'
 import { SithLordsList } from './SithLordsList'
+import { createStore } from 'redux';
+import { connect } from 'react-redux';
 
-export class App extends Component {
+
+function mapStateToProps(state) {
+  console.log(state);
+  return {
+    planet: state
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onIncrement: () => dispatch({type: 'ROGELIO'})
+  }
+}
+
+class App extends Component {
   render() {
-    const sithLords = [
-      {
-        name: 'Edda',
-        homeworld: 'Monterrey'
-      },
-      {
-        name: 'Rogelio',
-        homeworld: 'SF'
-      },
-    ]
     return (
-      <div>
-        <PlanetMonitor planet="BatMan" />
-        <SithLordsList sithLords={sithLords} />
-      </div>
+      <PlanetMonitor planet={this.props.planet}/>
     )
   }
 }
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
