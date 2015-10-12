@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     planet: state
   };
@@ -20,6 +19,7 @@ function mapDispatchToProps(dispatch) {
 
 class App extends Component {
   render() {
+      console.log(this);
     return (
       <PlanetMonitor planet={this.props.planet}/>
     )
